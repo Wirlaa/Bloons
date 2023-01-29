@@ -6,8 +6,5 @@ package agh;
 public interface ITower {
     // zmienna final koszt
     // zmienna final cena sprzedazy
-    // (czy chcemy ulepszenia?)
-    // zmienna ile obrazen
-    // zmienna zasieg
-    // zmienna liczba pocikow
+    // ulepszenia obrazen, zasiegu, liczby pociskow, szybkostrzelnsci
 }
