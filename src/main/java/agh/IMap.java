@@ -3,7 +3,6 @@ package agh;
 /**
  * Interface responsible for interacting with the map.
  */
-// interfejs -> klasa abstrakcyjna ogarniajaca wiekszosc rzeczy -> klasa implementujaca dany typ mapy
 public interface IMap {
     // zmienna ścieżki - lista klasy sciezka
 
