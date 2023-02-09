@@ -6,16 +6,16 @@ import java.util.ArrayList;
  * Class responsible for managing the shop.
  */
 public class Shop {
-    ArrayList<Tower> unlockedTowers = new ArrayList<>();
+    private final ArrayList<TowerType> unlockedTowerTypes = new ArrayList<>();
 
-    public void unlockTower(Tower tower, int money) {
-        if (tower.getUnlockPrice() <= money){
-            unlockedTowers.add(tower);
+    public void unlockTower(TowerType towerType, int money) {
+        if (towerType.getUnlockPrice() <= money){
+            unlockedTowerTypes.add(towerType);
         } //todo else jako warning jak bedziemy miec czas
     }
 
-    public boolean canBuyTower(Tower tower, int money) {
-        return unlockedTowers.contains(tower) && tower.getBuyingPrice() <= money;
+    public boolean canBuyTower(TowerType towerType, int money) {
+        return unlockedTowerTypes.contains(towerType) && towerType.getBuyingPrice() <= money;
         //todo else jako warning
     }
 }

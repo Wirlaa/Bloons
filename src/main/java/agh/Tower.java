@@ -1,36 +1,44 @@
 package agh;
 
-public enum Tower implements ITower {
-    BASIC,
-    MEDIUM,
-    ADVANCED;
 
-    public int getBuyingPrice() {
-        return switch (this) {
-            case BASIC -> 10;
-            case MEDIUM -> 50;
-            case ADVANCED -> 100;
-        };
+import static agh.TowerType.*;
+
+public class Tower extends AMapElement implements ITower {
+    private TowerType type;
+    private int range;
+    private int damage;
+    private int fireRate;
+
+    public Tower(TowerType type, Point position) {
+        this.type = type;
+        this.position = position;
+        this.range = type.getStartingRange();
+        this.damage = type.getStartingDamage();
+        this.fireRate = type.getStartingFireRate();
     }
+    public TowerType getType() {return type;}
+    public int getRange() {return range;}
+    public int getDamage() {return damage;}
+    public int getFireRate() {return fireRate;}
 
-    public int getSellingPrice() {
-        return switch (this) {
-            case BASIC -> 5;
-            case MEDIUM -> 25;
-            case ADVANCED -> 50;
-        };
-    }
-
-    public int getUnlockPrice() {
-        return switch (this) {
-            case BASIC -> 0;
-            case MEDIUM -> 75;
-            case ADVANCED -> 150;
-        };
+    public void changePosition(Point newPosition) {
+        positionChanged(position, newPosition);
+        position = newPosition;
     }
 
     @Override
     public void upgrade() {
-        //todo
+        type = switch(type){
+            case BASIC -> MEDIUM;
+            case MEDIUM, ADVANCED -> ADVANCED;
+            //todo error message ze nie da sie upgradowac advanced
+        };
+    }
+
+    @Override
+    public void positionChanged(Point oldPosition, Point newPosition){
+        for (IMapElementObserver observer: observers) {
+            observer.positionChangedTower(oldPosition, newPosition, this);
+        }
     }
 }

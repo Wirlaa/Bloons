@@ -5,6 +5,15 @@ public enum BalloonType {
     BLUE,
     GREEN;
 
+    // czyli jak szybko sie poruszają, na razie jest hardcoded w mapie
+    public int getStartingSpeed() {
+        return switch (this) {
+            case RED -> 1;
+            case BLUE -> 2;
+            case GREEN -> 3;
+        };
+    }
+
     public int getDropCount() {
         return switch (this) {
             case RED -> 1;
@@ -20,6 +29,5 @@ public enum BalloonType {
             case GREEN -> 3;
         };
     }
-
 
 }

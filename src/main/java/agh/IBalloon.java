@@ -5,5 +5,5 @@ package agh;
  */
 public interface IBalloon {
     //todo zmienna sciezka
-    void move();
+    void move(double step);
 }
