@@ -6,15 +6,29 @@ public class Balloon extends AMapElement implements IBalloon {
     private int pathIndex;
     private int dropCount;
     private int spawnCount;
+    private int speed;
+
+    public Balloon(Balloon balloon) {
+        this(balloon.color.getNextColor(), balloon.path);
+        this.position = balloon.position; //should override, right?
+    }
 
     public Balloon(BalloonType color, Path path) {
         this.color = color;
         this.path = path;
         this.pathIndex = 1;
         this.position = path.getEntry();
-        this.dropCount = color.getDropCount();
+        this.dropCount = color.getMoneyDrop();
         this.spawnCount = color.getSpawnCount();
+        this.speed = color.getStartingSpeed();
     }
+
+    @Override
+    public int getDropCount() {return dropCount;}
+    @Override
+    public int getSpawnCount() {return spawnCount;}
+    @Override
+    public int getSpeed() {return speed;}
 
     //trzeba testy napisac
     @Override

@@ -1,11 +1,13 @@
 package agh;
 
+/**
+ * Enum representing balloon types.
+ */
 public enum BalloonType {
     RED,
     BLUE,
     GREEN;
 
-    // czyli jak szybko sie poruszają, na razie jest hardcoded w mapie
     public int getStartingSpeed() {
         return switch (this) {
             case RED -> 1;
@@ -14,7 +16,7 @@ public enum BalloonType {
         };
     }
 
-    public int getDropCount() {
+    public int getMoneyDrop() {
         return switch (this) {
             case RED -> 1;
             case BLUE -> 3;
@@ -27,6 +29,14 @@ public enum BalloonType {
             case RED -> 0;
             case BLUE -> 5;
             case GREEN -> 3;
+        };
+    }
+
+    public BalloonType getNextColor() {
+        return switch (this) {
+            case RED -> null;
+            case BLUE -> RED;
+            case GREEN -> BLUE;
         };
     }
 

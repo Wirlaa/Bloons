@@ -5,14 +5,17 @@ import java.util.List;
 
 public class Path implements IPath {
     private Point[] pathPoints;
-    protected final List<IPathObserver> observers = new ArrayList<>();
+    private final List<IPathObserver> observers = new ArrayList<>();
     public Path(Point[] points) {this.pathPoints = points;}
     public Point[] getPathPoints() {return pathPoints.clone();}
     public Point getEntry() {return pathPoints[0];}
     public Point getExit() {return pathPoints[pathPoints.length-1];}
 
-    // mozna zrobic klase abstrakcyjną i dodawać różne typy ścieżek (linear, curved etc) ktore będą się różnić tą funkcją
+    // mozna zrobic klase abstrakcyjną i dodawać różne typy ścieżek (linear, curved etc) ktore będą się różnić metodami
+
+
     // trzeba napisac testy xD
+    @Override
     public double getY(Point position, int index, double step) {
         double a = pathPoints[index].y() - position.y();
         double b = position.x() - pathPoints[index].x();
@@ -23,6 +26,7 @@ public class Path implements IPath {
     }
 
     //dziala tylko na liniach, nie mam pojecia jak to zrobic na krzywych
+    @Override
     public boolean shouldIndexIncrement(Point position, Point newPosition, int pathIndex) {
         Point endPoint = pathPoints[pathIndex];
         double xDiff = endPoint.x() - position.x();
@@ -38,9 +42,12 @@ public class Path implements IPath {
                     endPoint.y() <= newPosition.y() && newPosition.y() <= position.y();
     }
 
-    public void addObserver(IPathObserver observer){ observers.add(observer);}
-    public void removeObserver(IPathObserver observer){ observers.remove(observer);}
-    public void exitReached(Balloon balloon){
+    @Override
+    public void addObserver(IPathObserver observer) {observers.add(observer);}
+    @Override
+    public void removeObserver(IPathObserver observer) {observers.remove(observer);}
+    @Override
+    public void exitReached(Balloon balloon) {
         for (IPathObserver observer: observers) {
             observer.exitReached(balloon);
         }

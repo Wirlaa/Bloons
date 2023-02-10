@@ -1,5 +1,8 @@
 package agh;
 
+/**
+ * Enum representing tower types.
+ */
 public enum TowerType {
     BASIC,
     MEDIUM,
@@ -23,7 +26,7 @@ public enum TowerType {
         };
     }
 
-    // czyli ile strzałów na sekunde?
+    // czyli ile strzałów na tick, na razie nie dziala?
     public int getStartingFireRate() {
         return switch (this) {
             case BASIC -> 1;

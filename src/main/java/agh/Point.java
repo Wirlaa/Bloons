@@ -1,7 +1,11 @@
 package agh;
 
 //Warning:(5, 52) Raw use of parameterized class 'Comparable' ???
+//cos nie wyszlo z tym comparable
 
+/**
+ * Record representing positions of map elements.
+ */
 public record Point(double x, double y) implements Comparable {
 
     @Override

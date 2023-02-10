@@ -1,11 +1,8 @@
 package agh;
 
-import java.util.HashMap;
-
 public class Player implements IPlayer {
     private final String name;
     private final Shop shop;
-    private HashMap<TowerType, Integer> towers = new HashMap<>();//todo trzeba zmienic
     private int lifeCount;
     private int money;
 
@@ -16,35 +13,39 @@ public class Player implements IPlayer {
         this.shop = new Shop();
     }
 
+    @Override
+    public int getLifeCount() { return lifeCount;}
+
+    @Override
     public void decrementLife(){
         lifeCount--;
         //todo info dla gracza ze stracil zycie
     }
 
+    @Override
     public void unlockTower(TowerType towerType) {
         shop.unlockTower(towerType, money);
     }
 
+    @Override
     public void buyTower(TowerType towerType) {
         if (shop.canBuyTower(towerType, money)){
-            int count = towers.getOrDefault(towerType,0) + 1;
-            towers.put(towerType, count);
             money -= towerType.getBuyingPrice();
         }
-        // todo ewentualnie warning dac tutaj a nie w sklepie
+        //todo ewentualnie warning dac tutaj a nie w sklepie
     }
 
+    @Override
     public void sellTower(TowerType towerType) {
-        if (towers.containsKey(towerType)){
-            int count = towers.get(towerType) - 1;
-            if (count != 0) {
-                towers.put(towerType, count);
-            } else {
-                towers.remove(towerType);
-            }
-            money += towerType.getSellingPrice();
-        }
-        // todo ewentualnie warning dac tutaj a nie w sklepie
+        money += towerType.getSellingPrice();
+        //todo ewentualnie warning dac tutaj a nie w sklepie
+    }
+
+    @Override
+    public void addMoney(int income) {
+        if (income > 0) {
+            money += income;
+        } //todo warning
     }
 
 }

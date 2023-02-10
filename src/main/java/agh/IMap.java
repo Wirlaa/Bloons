@@ -1,13 +1,17 @@
 package agh;
 
+import java.util.ArrayList;
+
 /**
  * Interface responsible for interacting with the map.
  */
 public interface IMap {
-    // zmienna ścieżki - lista klasy sciezka
-
-    // kolekcja przechowujaca aktualne balony i ich pozycje
-    // wzorzec obserwator zeby trackowac pozycje balonow
-
-    // kolekcja pozycji wiezyczek
+    Balloon[] getBalloons();
+    ArrayList<Path> getPaths();
+    void moveBalloons();
+    void placeBalloon(Balloon balloon);
+    void placeTower(Tower tower); //czy potrzebne tutaj? plus pozostale funkcje tower
+    void addPath(Path path);
+    void addObserver(IMapObserver observer);
+    void removeObserver(IMapObserver observer);
 }
