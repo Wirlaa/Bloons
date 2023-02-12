@@ -4,6 +4,10 @@ package agh;
  * Interface responsible for managing towers.
  */
 public interface ITower {
-    //todo uzupelnic interface
     void upgrade();
+    TowerType getType();
+    int getRange();
+    int getDamage();
+    int getFireRate();
+    void changePosition(Point newPosition);
 }

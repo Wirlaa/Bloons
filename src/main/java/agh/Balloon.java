@@ -2,18 +2,20 @@ package agh;
 
 public class Balloon extends AMapElement implements IBalloon {
     private final BalloonType color;
-    private Path path;
+    private IPath path;
     private int pathIndex;
     private int dropCount;
     private int spawnCount;
     private int speed;
 
     public Balloon(Balloon balloon) {
+        // nie ma checku jakby balon byl czerwony, bo wtedy kolor bedzie nullem
+        // czy powinien check byc w inicie?
         this(balloon.color.getNextColor(), balloon.path);
-        this.position = balloon.position; //should override, right?
+        this.position = balloon.position;
     }
 
-    public Balloon(BalloonType color, Path path) {
+    public Balloon(BalloonType color, IPath path) {
         this.color = color;
         this.path = path;
         this.pathIndex = 1;
@@ -27,14 +29,11 @@ public class Balloon extends AMapElement implements IBalloon {
     public int getDropCount() {return dropCount;}
     @Override
     public int getSpawnCount() {return spawnCount;}
-    @Override
-    public int getSpeed() {return speed;}
 
-    //trzeba testy napisac
     @Override
-    public void move(double step) {
-        Point newPosition = new Point(position.x() + step, path.getY(position, pathIndex, step));
-        if (path.shouldIndexIncrement(position, newPosition, pathIndex)) {
+    public void move() {
+        Point newPosition = new Point(position.x() + speed, path.getY(position, pathIndex, speed));
+        if (!path.isNewPositionBetweenPathPoints(position, newPosition, pathIndex)) {
             newPosition = path.getPathPoints()[pathIndex];
             pathIndex++;
         }

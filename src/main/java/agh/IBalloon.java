@@ -4,8 +4,7 @@ package agh;
  * Interface responsible for managing balloons.
  */
 public interface IBalloon {
-    void move(double step);
+    void move();
     int getDropCount();
     int getSpawnCount();
-    int getSpeed();
 }

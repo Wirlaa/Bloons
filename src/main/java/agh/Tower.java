@@ -16,11 +16,16 @@ public class Tower extends AMapElement implements ITower {
         this.damage = type.getStartingDamage();
         this.fireRate = type.getStartingFireRate();
     }
+    @Override
     public TowerType getType() {return type;}
+    @Override
     public int getRange() {return range;}
+    @Override
     public int getDamage() {return damage;}
+    @Override
     public int getFireRate() {return fireRate;}
 
+    @Override
     public void changePosition(Point newPosition) {
         positionChanged(position, newPosition);
         position = newPosition;

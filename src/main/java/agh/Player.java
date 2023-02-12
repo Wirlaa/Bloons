@@ -13,8 +13,17 @@ public class Player implements IPlayer {
         this.shop = new Shop();
     }
 
+    public Player(String name, int lifeCount) {
+        this(name);
+        this.lifeCount = lifeCount;
+    }
+
     @Override
     public int getLifeCount() { return lifeCount;}
+    @Override
+    public int getMoney() {return money;}
+    @Override
+    public String getName() {return name;}
 
     @Override
     public void decrementLife(){
@@ -23,23 +32,16 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void unlockTower(TowerType towerType) {
-        shop.unlockTower(towerType, money);
-    }
+    public void unlockTower(TowerType towerType) {shop.unlockTower(towerType, money);}
 
     @Override
-    public void buyTower(TowerType towerType) {
-        if (shop.canBuyTower(towerType, money)){
-            money -= towerType.getBuyingPrice();
-        }
-        //todo ewentualnie warning dac tutaj a nie w sklepie
-    }
+    public boolean canBuyTower(TowerType towerType) {return shop.canBuyTower(towerType, money);}
 
     @Override
-    public void sellTower(TowerType towerType) {
-        money += towerType.getSellingPrice();
-        //todo ewentualnie warning dac tutaj a nie w sklepie
-    }
+    public void buyTower(TowerType towerType) {money -= towerType.getBuyingPrice();}
+
+    @Override
+    public void sellTower(TowerType towerType) {money += towerType.getSellingPrice();}
 
     @Override
     public void addMoney(int income) {

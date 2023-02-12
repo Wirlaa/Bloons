@@ -1,13 +1,17 @@
 package agh;
 
-import java.util.*;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
-public class Map implements IMap, IMapElementObserver, IPathObserver {
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Map implements IMap {
     private final List<IMapObserver> observers = new ArrayList<>();
     private final HashMap<Point, Tower> towers = new HashMap<>();
     private final ArrayList<Path> paths = new ArrayList<>();
-    private final HashMap<Point, Balloon> balloons = new HashMap<>();
-    private static final Point LOWER_BOUND = new Point(0,0);
+    private final Multimap<Point, Balloon> balloons = HashMultimap.create();
+    private static final Point LOWER_BOUND = new Point(0, 0);
     private static Point upper_bound;
 
     public Map(int width, int height) {
@@ -16,22 +20,28 @@ public class Map implements IMap, IMapElementObserver, IPathObserver {
 
     @Override
     public Balloon[] getBalloons() {
-        return (Balloon[]) balloons.values().stream().toArray(); //cast?
-        //Warning:(19, 55) Can be replaced with 'collection.toArray()' ???
+        return balloons.values().toArray(new Balloon[0]);
     }
 
     @Override
-    public ArrayList<Path> getPaths() {return paths;}
+    public Tower[] getTowers() {
+        return towers.values().toArray(new Tower[0]);
+    }
+
+    @Override
+    public ArrayList<Path> getPaths() {
+        return paths;
+    }
 
     @Override
     public void moveBalloons() {
-        //czy to wywali concurrent modification?
         ArrayList<Tower> activeTowers = new ArrayList<>(towers.values());
-        for (Balloon balloon: balloons.values()){
-            balloon.move(balloon.getSpeed());
+        Balloon[] activeBalloons = getBalloons();
+        for(Balloon balloon : activeBalloons) {
+            balloon.move();
             Tower towerToRemove = null;
-            for (Tower tower : activeTowers){
-                if (checkCollisions(balloon, tower)){
+            for (Tower tower : activeTowers) {
+                if (checkCollisions(balloon, tower)) {
                     balloons.remove(balloon.position, balloon);
                     balloonPopped(balloon);
                     spawnNextBalloons(balloon);
@@ -57,7 +67,7 @@ public class Map implements IMap, IMapElementObserver, IPathObserver {
     }
 
     @Override
-    public void placeBalloon(Balloon balloon){
+    public void placeBalloon(Balloon balloon) {
         if (inBounds(balloon.getPosition())) {
             balloons.put(balloon.getPosition(), balloon);
             balloon.addObserver(this);
@@ -65,7 +75,16 @@ public class Map implements IMap, IMapElementObserver, IPathObserver {
     }
 
     @Override
-    public void placeTower(Tower tower){
+    public void placeBalloons(BalloonType type, int number) {
+        int pathsCount = paths.size();
+        for (int i = number; i > 0; i--) {
+            placeBalloon(new Balloon(type, paths.get(ThreadLocalRandom.current().nextInt(0, pathsCount))));
+        }
+    }
+
+
+    @Override
+    public void placeTower(Tower tower) {
         if (inBounds(tower.getPosition())) {
             towers.put(tower.getPosition(), tower);
             tower.addObserver(this);
@@ -75,15 +94,20 @@ public class Map implements IMap, IMapElementObserver, IPathObserver {
     @Override
     public void addPath(Path path) {paths.add(path);}
 
-    //testyyyy
-    private boolean inBounds(Point point){
-        return point.compareTo(LOWER_BOUND) > 0 && point.compareTo(upper_bound) < 0;
+    @Override
+    public boolean inBounds(Point point) {
+        return point.follows(LOWER_BOUND) && point.precedes(upper_bound);
     }
 
     @Override
-    public void addObserver(IMapObserver observer) {observers.add(observer);}
+    public void addObserver(IMapObserver observer) {
+        observers.add(observer);
+    }
+
     @Override
-    public void removeObserver(IMapObserver observer) {observers.remove(observer);}
+    public void removeObserver(IMapObserver observer) {
+        observers.remove(observer);
+    }
 
     @Override
     public void positionChangedTower(Point oldPosition, Point newPosition, Tower tower) {
@@ -100,39 +124,16 @@ public class Map implements IMap, IMapElementObserver, IPathObserver {
     @Override
     public void exitReached(Balloon balloon) {
         balloons.remove(balloon.position, balloon);
-        for (IMapObserver observer: observers) {
+        for (IMapObserver observer : observers) {
             observer.exitReached(balloon);
         }
     }
 
-    public void balloonPopped(Balloon balloon){
-        for (IMapObserver observer: observers) {
+    public void balloonPopped(Balloon balloon) {
+        balloons.remove(balloon.position, balloon);
+        for (IMapObserver observer : observers) {
             observer.balloonPopped(balloon);
         }
     }
 
-    public void moveTower(Tower tower, Point position) {
-        tower.changePosition(position);
-    } //troche glupie ze mapa wywoluje zmiane a potem jako observer obserwuje tą zmiane XD
-    //chyba ze player powinien miec opcje move, wtedy to by mialo jakis sens
-
-
-    //ogolnie moze wystarczy ze player bedzie mogl ogarniac wiezyczki, ale nie wiem jak to z gui wyjdzie
-    public void buyTower(Tower tower) {
-        for (IMapObserver observer: observers) {
-            observer.buyTower(tower);
-        }
-    }
-
-    public void sellTower(Tower tower) {
-        for (IMapObserver observer: observers) {
-            observer.sellTower(tower);
-        }
-    }
-
-    public void unlockTower(Tower tower) {
-        for (IMapObserver observer: observers) {
-            observer.unlockTower(tower);
-        }
-    }
 }

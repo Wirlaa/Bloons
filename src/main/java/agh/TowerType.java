@@ -8,7 +8,7 @@ public enum TowerType {
     MEDIUM,
     ADVANCED;
 
-    // zakladam ze jest to po prostu kolo o danym promieniu
+    // zasieg jest wyznaczany przez kolo o danym promieniu
     public int getStartingRange() {
         return switch (this) {
             case BASIC -> 5;
@@ -26,7 +26,7 @@ public enum TowerType {
         };
     }
 
-    // czyli ile strzałów na tick, na razie nie dziala?
+    // czyli ile strzałów na tick, na razie nie zaimplementowane?
     public int getStartingFireRate() {
         return switch (this) {
             case BASIC -> 1;
