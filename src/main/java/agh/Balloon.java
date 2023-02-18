@@ -32,7 +32,11 @@ public class Balloon extends AMapElement implements IBalloon {
 
     @Override
     public void move() {
-        Point newPosition = new Point(position.x() + speed, path.getY(position, pathIndex, speed));
+        int step = speed;
+        if (!path.isMovingRight(position, pathIndex)) step *= -1;
+        double newX = position.x();
+        if (!path.isVertical(position, pathIndex)) newX = position.x() + step;
+        Point newPosition = new Point(newX, path.getY(position, pathIndex, step));
         if (!path.isNewPositionBetweenPathPoints(position, newPosition, pathIndex)) {
             newPosition = path.getPathPoints()[pathIndex];
             pathIndex++;

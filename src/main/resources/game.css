@@ -1,0 +1,14 @@
+.root{
+    -fx-background-color: #333333;
+}
+
+HBox{
+    -fx-background-color: black;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.button{
+    -fx-font-family: Georgia;
+    -fx-font-size: 15;
+}

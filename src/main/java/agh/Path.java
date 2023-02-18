@@ -27,6 +27,16 @@ public class Path implements IPath {
         }
     }
 
+    @Override
+    public boolean isVertical(Point position, int index) {
+        return pathPoints[index].x() - position.x() == 0;
+    }
+
+    @Override
+    public boolean isMovingRight(Point position, int index) {
+        return pathPoints[index].follows(position);
+    }
+
     //ten sposob bedzie dzialac tylko na liniach, nie mam pojecia jak to zrobic na krzywych parametrycznych
     //prawdopodobnie sprawdzając parametr xD
     @Override

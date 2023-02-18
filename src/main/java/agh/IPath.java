@@ -7,6 +7,8 @@ public interface IPath {
     Point[] getPathPoints();
     Point getEntry();
     Point getExit();
+    boolean isVertical(Point position, int index);
+    boolean isMovingRight(Point position, int index);
     double getY(Point position, int index, double step);
     boolean isNewPositionBetweenPathPoints(Point position, Point newPosition, int pathIndex);
     void addObserver(IPathObserver observer);

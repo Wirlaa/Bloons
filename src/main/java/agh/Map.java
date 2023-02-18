@@ -38,6 +38,9 @@ public class Map implements IMap {
         ArrayList<Tower> activeTowers = new ArrayList<>(towers.values());
         Balloon[] activeBalloons = getBalloons();
         for(Balloon balloon : activeBalloons) {
+            System.out.println(balloon);
+            System.out.println(balloon.getPosition().x());
+            System.out.println(balloon.getPosition().y());
             balloon.move();
             Tower towerToRemove = null;
             for (Tower tower : activeTowers) {
