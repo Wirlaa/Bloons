@@ -57,8 +57,10 @@ public class Map implements IMap {
     }
 
     private void spawnNextBalloons(Balloon balloon) {
-        for (int i = balloon.getSpawnCount(); i > 0; i--) {
-            placeBalloon(new Balloon(balloon));
+        if (!balloon.isLastColor()) {
+            for (int i = balloon.getSpawnCount(); i > 0; i--) {
+                placeBalloon(new Balloon(balloon));
+            }
         }
     }
 

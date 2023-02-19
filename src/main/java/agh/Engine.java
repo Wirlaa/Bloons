@@ -74,6 +74,7 @@ public class Engine implements IEngine {
                 throw new RuntimeException(e);
             }
         }
+        //todo koniec gry
 
     }
 
@@ -86,10 +87,6 @@ public class Engine implements IEngine {
             paused = false;
             pauseLock.notifyAll();
         }
-    }
-    public void exit() {
-        Thread.currentThread().interrupt();
-        System.out.println(Thread.interrupted());
     }
 
     public void mapChanged() {

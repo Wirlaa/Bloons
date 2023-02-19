@@ -12,8 +12,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-
-//bedzie odpowiadal za wykonywanie akcji
 public class GameController implements IChangeObserver {
     @FXML
     private AnchorPane pane;

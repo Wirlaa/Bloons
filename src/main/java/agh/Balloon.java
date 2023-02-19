@@ -29,6 +29,9 @@ public class Balloon extends AMapElement implements IBalloon {
     public int getDropCount() {return dropCount;}
     @Override
     public int getSpawnCount() {return spawnCount;}
+    @Override
+    public boolean isLastColor() {return color.getNextColor() == null;}
+
 
     @Override
     public void move() {

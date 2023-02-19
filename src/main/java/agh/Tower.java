@@ -38,6 +38,9 @@ public class Tower extends AMapElement implements ITower {
             case MEDIUM, ADVANCED -> ADVANCED;
             //todo error message ze nie da sie upgradowac advanced
         };
+        this.range = type.getStartingRange();
+        this.damage = type.getStartingDamage();
+        this.fireRate = type.getStartingFireRate();
     }
 
     @Override
