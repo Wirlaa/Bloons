@@ -2,10 +2,16 @@
     -fx-background-color: black;
 }
 
+.button:pressed{
+  -fx-background-color: #222222;
+}
+
+
 VBox{
     -fx-padding: 10;
     -fx-spacing: 3;
 }
+
 
 .button{
     -fx-background-color: black;
@@ -25,20 +31,22 @@ VBox{
     -fx-border-width: 3;
 }
 
-.menu-bar{
-    -fx-background-color: black;
-    -fx-border-width: 1;
-    -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: #333333;
+.check-box .box{
+    -fx-background-color: #999999;
 }
 
-.menu .label{
+.check-box {
     -fx-text-fill: white;
     -fx-font-family: Georgia;
-    -fx-font-size: 20;
+    -fx-font-size: 14;
 }
 
-.menu-item .label{
-    -fx-text-fill: black;
-    -fx-font-size: 15;
+#helpLabel{
+    -fx-font-size: 12;
+    -fx-border-style: hidden;
+}
+
+#buttonStart{
+    -fx-font-size: 30;
+    -fx-text-fill: green;
 }

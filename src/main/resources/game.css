@@ -12,3 +12,9 @@ HBox{
     -fx-font-family: Georgia;
     -fx-font-size: 15;
 }
+
+.label{
+    -fx-text-fill: #BBBBBB;
+    -fx-font-family: Georgia;
+    -fx-font-size: 20;
+}

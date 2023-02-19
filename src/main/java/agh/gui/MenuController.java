@@ -11,6 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -21,15 +25,25 @@ import java.util.Objects;
 public class MenuController {
     private Map map;
     @FXML
+    private BorderPane pane;
+    @FXML
     private HBox maps;
     @FXML
     private Button buttonStart;
+    @FXML
+    private TextField textField;
+    @FXML
+    private CheckBox darkMode;
+    @FXML
+    private Label helpLabel;
     private Scene scene;
     private Parent root;
 
     @FXML
     public void createNew(ActionEvent event){
-        maps.setVisible(true);
+        pane.setCenter(maps);
+        maps.setVisible(!maps.isVisible());
+        if(buttonStart.isVisible()) hideStart();
         // pokazuje mapy to wyboru
         System.out.println("create new save");
     }
@@ -44,7 +58,16 @@ public class MenuController {
     public void showOptions(ActionEvent event){
         // pokazuje opcje
         System.out.println("show options");
+        switchOptions();
     }
+
+    @FXML
+    public void showAbout(ActionEvent event){
+        // pokazuje opcje
+        System.out.println("show about");
+        helpLabel.setVisible(!helpLabel.isVisible());
+    }
+
 
     @FXML
     public void saveAndExit(ActionEvent event){
@@ -55,6 +78,18 @@ public class MenuController {
     }
 
     @FXML
+    public void switchDarkMode(ActionEvent event){
+        Scene scene = ((Node) event.getSource()).getScene();
+        if (darkMode.isSelected()) {
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/menuDark.css")).toExternalForm());
+        } else {
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/menuLight.css")).toExternalForm());
+        }
+    }
+
+    @FXML
     public void selectMap1(){
         System.out.println("map1");
         map = new Map(50,50);
@@ -62,7 +97,7 @@ public class MenuController {
         Path path = new Path(points);
         path.addObserver(map);
         map.addPath(path);
-        showButtonStart();
+        showStart();
     }
 
     @FXML
@@ -73,7 +108,7 @@ public class MenuController {
         Path path = new Path(points);
         path.addObserver(map);
         map.addPath(path);
-        showButtonStart();
+        showStart();
     }
 
     @FXML
@@ -84,12 +119,28 @@ public class MenuController {
         Path path = new Path(points);
         path.addObserver(map);
         map.addPath(path);
-        showButtonStart();
+        showStart();
     }
 
-    private void showButtonStart(){
+    private void showStart(){
+        textField.setDisable(false);
+        textField.setVisible(true);
         buttonStart.setDisable(false);
         buttonStart.setVisible(true);
+    }
+
+    private void hideStart(){
+        textField.setDisable(true);
+        textField.setVisible(false);
+        buttonStart.setDisable(true);
+        buttonStart.setVisible(false);
+    }
+
+    private void switchOptions(){
+        boolean state = darkMode.isVisible();
+        darkMode.setDisable(state);
+        darkMode.setVisible(!state);
+
     }
 
     @FXML
@@ -101,7 +152,9 @@ public class MenuController {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
 
         GameController gameController = loader.getController();
-        gameController.initGame(map, new Player("player", 100));
+        String name = textField.getText();
+        if (name.isEmpty()) name = "Player";
+        gameController.initGame(map, new Player(name, 100));
     }
 
 

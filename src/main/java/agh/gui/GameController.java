@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -15,15 +16,24 @@ import javafx.stage.WindowEvent;
 public class GameController implements IChangeObserver {
     @FXML
     private AnchorPane pane;
+    @FXML
+    private Label playerNameLabel;
+    @FXML
+    private Label lifeCountLabel;
     private Map map;
     private Engine engine;
 
+    //daloby sie uzyc initializable zamiast tego?
     public void initGame(Map map, Player player){
+        playerNameLabel.setText(player.getName());
+        lifeCountLabel.setText(Integer.toString(player.getLifeCount()));
+        System.out.println(player.getName());
         this.map = map;
         engine = new Engine(player, map, 0);
         engine.addObserver(this);
         Thread engineThread = new Thread(engine);
         engineThread.start();
+
     }
 
     @FXML

@@ -1,0 +1,47 @@
+.root{
+    -fx-background-color: beige;
+}
+
+.button:pressed{
+  -fx-background-color: bisque;
+}
+
+VBox{
+    -fx-padding: 10;
+    -fx-spacing: 3;
+}
+
+
+.button{
+    -fx-background-color: beige;
+    -fx-text-fill: maroon;
+    -fx-font-family: Georgia;
+    -fx-font-size: 20;
+}
+
+.label{
+    -fx-text-fill: maroon;
+    -fx-font-family: Georgia;
+    -fx-font-size: 40;
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: maroon;
+    -fx-border-width: 3;
+}
+
+.check-box {
+    -fx-text-fill: maroon;
+    -fx-font-family: Georgia;
+    -fx-font-size: 14;
+}
+
+#helpLabel{
+    -fx-font-size: 12;
+    -fx-border-style: hidden;
+}
+
+#buttonStart{
+    -fx-font-size: 30;
+    -fx-text-fill: green;
+}

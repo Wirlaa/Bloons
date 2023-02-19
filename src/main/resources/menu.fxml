@@ -33,21 +33,24 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agh.gui.MenuController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agh.gui.MenuController">
    <left>
-      <VBox prefHeight="240.0" prefWidth="118.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="215.0" prefWidth="124.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonNew" mnemonicParsing="false" onAction="#createNew" prefHeight="26.0" prefWidth="122.0" text="New" />
+            <Button fx:id="buttonNew" mnemonicParsing="false" onAction="#createNew" prefHeight="26.0" prefWidth="130.0" text="New" />
             <Button fx:id="buttonLoad" mnemonicParsing="false" onAction="#loadSave" prefHeight="26.0" prefWidth="130.0" text="Load" />
             <Button fx:id="buttonOptions" mnemonicParsing="false" onAction="#showOptions" prefHeight="26.0" prefWidth="164.0" text="Options" />
-            <Button fx:id="buttonHelp" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" text="Help" />
+            <Button fx:id="buttonHelp" mnemonicParsing="false" onAction="#showAbout" prefHeight="26.0" prefWidth="153.0" text="About" />
             <Button fx:id="buttonExit" mnemonicParsing="false" onAction="#saveAndExit" prefHeight="26.0" prefWidth="134.0" text="Exit" />
          </children>
       </VBox>
@@ -56,7 +59,7 @@
       <Label prefHeight="101.0" prefWidth="680.0" text="Bloons" textAlignment="CENTER" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <HBox fx:id="maps" prefHeight="100.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
+      <HBox fx:id="maps" prefHeight="215.0" prefWidth="426.0" visible="false" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="150.0" onMouseClicked="#selectMap1" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -75,6 +78,23 @@
       </HBox>
    </center>
    <bottom>
-      <Button fx:id="buttonStart" disable="true" mnemonicParsing="false" onAction="#start" prefHeight="58.0" prefWidth="182.0" text="Start" visible="false" BorderPane.alignment="CENTER" />
+      <VBox alignment="CENTER" prefHeight="83.0" prefWidth="471.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textField" alignment="CENTER" disable="true" maxWidth="150.0" prefHeight="26.0" prefWidth="150.0" promptText="Enter player name" visible="false" VBox.vgrow="NEVER" />
+            <Button fx:id="buttonStart" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#start" prefHeight="58.0" prefWidth="182.0" text="Start" visible="false" />
+         </children>
+      </VBox>
    </bottom>
+   <right>
+      <VBox prefHeight="215.0" prefWidth="117.0" BorderPane.alignment="CENTER">
+         <children>
+            <CheckBox fx:id="darkMode" disable="true" mnemonicParsing="false" onAction="#switchDarkMode" prefHeight="26.0" prefWidth="122.0" selected="true" text="Dark Mode" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="helpLabel" prefHeight="194.0" prefWidth="132.0" text="Bloons game created by Weronika Klatka and Filip Piskorski. Load button not working." textAlignment="CENTER" visible="false" wrapText="true" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
