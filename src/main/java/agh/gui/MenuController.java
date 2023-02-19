@@ -40,6 +40,8 @@ public class MenuController {
     private Label helpLabel;
     private Scene scene;
     private Parent root;
+    private final double coeffx = 0.80;
+    private final double coeffy = 1;
 
     @FXML
     public void createNew(ActionEvent event){
@@ -96,27 +98,27 @@ public class MenuController {
         System.out.println("map1");
         mapid = 1;
         map = new Map(160,90);
-        Point[] points = {new Point(35,0),
-                new Point(31,12),
-                new Point(60,40),
-                new Point(50,50),
-                new Point(30,50),
-                new Point(24,35),
-                new Point(47,18),
-                new Point(60,17),
-                new Point(80,25),
-                new Point(110,49),
-                new Point(130,54),
-                new Point(140,53),
-                new Point(160,40),
-                new Point(155,30),
-                new Point(130,23),
-                new Point(110,23),
-                new Point(95,33),
-                new Point(80,50),
-                new Point(80,60),
-                new Point(110,65),
-                new Point(120,77)
+        Point[] points = {new Point(35*coeffx,0*coeffy),
+                new Point(31*coeffx,12*coeffy),
+                new Point(60*coeffx,40*coeffy),
+                new Point(50*coeffx,50*coeffy),
+                new Point(30*coeffx,50*coeffy),
+                new Point(24*coeffx,35*coeffy),
+                new Point(47*coeffx,18*coeffy),
+                new Point(60*coeffx,17*coeffy),
+                new Point(80*coeffx,25*coeffy),
+                new Point(110*coeffx,49*coeffy),
+                new Point(130*coeffx,54*coeffy),
+                new Point(140*coeffx,53*coeffy),
+                new Point(160*coeffx,40*coeffy),
+                new Point(155*coeffx,30*coeffy),
+                new Point(130*coeffx,23*coeffy),
+                new Point(110*coeffx,23*coeffy),
+                new Point(95*coeffx,33*coeffy),
+                new Point(80*coeffx,50*coeffy),
+                new Point(80*coeffx,60*coeffy),
+                new Point(110*coeffx,65*coeffy),
+                new Point(120*coeffx,77*coeffy)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -129,19 +131,19 @@ public class MenuController {
         System.out.println("map2");
         mapid = 2;
         map = new Map(160,90);
-        Point[] points = {new Point(0,17),
-                new Point(24,17),
-                new Point(24,36),
-                new Point(71,36),
-                new Point(71,62),
-                new Point(42,62),
-                new Point(42,22),
-                new Point(84,22),
-                new Point(84,10),
-                new Point(145,10),
-                new Point(145,44),
-                new Point(107,44),
-                new Point(107,77)
+        Point[] points = {new Point(0*coeffx,17*coeffy),
+                new Point(24*coeffx,17*coeffy),
+                new Point(24*coeffx,36*coeffy),
+                new Point(71*coeffx,36*coeffy),
+                new Point(71*coeffx,62*coeffy),
+                new Point(42*coeffx,62*coeffy),
+                new Point(42*coeffx,22*coeffy),
+                new Point(84*coeffx,22*coeffy),
+                new Point(84*coeffx,10*coeffy),
+                new Point(145*coeffx,10*coeffy),
+                new Point(145*coeffx,44*coeffy),
+                new Point(107*coeffx,44*coeffy),
+                new Point(107*coeffx,77*coeffy)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -154,24 +156,24 @@ public class MenuController {
         System.out.println("map3");
         mapid = 3;
         map = new Map(160,90);
-        Point[] points1 = {new Point(80, 0),
-                new Point(80, 12),
-                new Point(40, 20),
-                new Point(66, 30),
-                new Point(37, 50),
-                new Point(70, 57),
-                new Point(55, 77)
+        Point[] points1 = {new Point(80*coeffx, 0*coeffy),
+                new Point(80*coeffx, 12*coeffy),
+                new Point(40*coeffx, 20*coeffy),
+                new Point(66*coeffx, 30*coeffy),
+                new Point(37*coeffx, 50*coeffy),
+                new Point(70*coeffx, 57*coeffy),
+                new Point(55*coeffx, 77*coeffy)
         };
         Path path1 = new Path(points1);
         path1.addObserver(map);
         map.addPath(path1);
-        Point[] points2 = {new Point(80, 0),
-                new Point(80, 12),
-                new Point(132, 20),
-                new Point(108, 34),
-                new Point(145, 42),
-                new Point(110, 60),
-                new Point(144, 76)
+        Point[] points2 = {new Point(80*coeffx, 0*coeffy),
+                new Point(80*coeffx, 12*coeffy),
+                new Point(132*coeffx, 20*coeffy),
+                new Point(108*coeffx, 34*coeffy),
+                new Point(145*coeffx, 42*coeffy),
+                new Point(110*coeffx, 60*coeffy),
+                new Point(144*coeffx, 76*coeffy)
         };
         Path path2 = new Path(points2);
         path2.addObserver(map);
