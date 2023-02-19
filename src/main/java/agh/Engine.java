@@ -45,7 +45,7 @@ public class Engine implements IEngine {
             mapChanged();
             System.out.println("balloons moved");
             try {
-                Thread.sleep(100);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

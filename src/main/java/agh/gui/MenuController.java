@@ -94,16 +94,28 @@ public class MenuController {
     public void selectMap1(){
         System.out.println("map1");
         mapid = 1;
-        map = new Map(150,150);
+        map = new Map(160,90);
         Point[] points = {new Point(35,0),
                 new Point(31,12),
                 new Point(60,40),
                 new Point(50,50),
                 new Point(30,50),
                 new Point(24,35),
-                new Point(24,35),
-                new Point(65,30),
-                new Point(70,30)
+                new Point(47,18),
+                new Point(60,17),
+                new Point(80,25),
+                new Point(110,49),
+                new Point(130,54),
+                new Point(140,53),
+                new Point(160,40),
+                new Point(155,30),
+                new Point(130,23),
+                new Point(110,23),
+                new Point(95,33),
+                new Point(80,50),
+                new Point(80,60),
+                new Point(110,65),
+                new Point(120,77)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -115,7 +127,7 @@ public class MenuController {
     public void selectMap2(){
         System.out.println("map2");
         mapid = 2;
-        map = new Map(50,50);
+        map = new Map(160,90);
         Point[] points = {new Point(0,17),
                 new Point(24,17),
                 new Point(24,36),
@@ -128,7 +140,7 @@ public class MenuController {
                 new Point(145,10),
                 new Point(145,44),
                 new Point(107,44),
-                new Point(107,80)
+                new Point(107,77)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -140,11 +152,29 @@ public class MenuController {
     public void selectMap3(){
         System.out.println("map3");
         mapid = 3;
-        map = new Map(50,50);
-        Point[] points = {new Point(0,0), new Point(20,0), new Point(20,20), new Point(0,20)};
-        Path path = new Path(points);
-        path.addObserver(map);
-        map.addPath(path);
+        map = new Map(160,90);
+        Point[] points1 = {new Point(80, 0),
+                new Point(80, 12),
+                new Point(40, 20),
+                new Point(66, 30),
+                new Point(37, 50),
+                new Point(70, 57),
+                new Point(55, 77)
+        };
+        Path path1 = new Path(points1);
+        path1.addObserver(map);
+        map.addPath(path1);
+        Point[] points2 = {new Point(80, 0),
+                new Point(80, 12),
+                new Point(132, 20),
+                new Point(108, 34),
+                new Point(145, 42),
+                new Point(110, 60),
+                new Point(144, 76)
+        };
+        Path path2 = new Path(points2);
+        path2.addObserver(map);
+        map.addPath(path2);
         showStart();
     }
 
