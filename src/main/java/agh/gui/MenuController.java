@@ -24,6 +24,7 @@ import java.util.Objects;
 
 public class MenuController {
     private Map map;
+    private int mapid;
     @FXML
     private BorderPane pane;
     @FXML
@@ -92,8 +93,30 @@ public class MenuController {
     @FXML
     public void selectMap1(){
         System.out.println("map1");
-        map = new Map(50,50);
-        Point[] points = {new Point(0,5), new Point(40,5), new Point(20,40), new Point(5,0)};
+        mapid = 1;
+        map = new Map(160,90);
+        Point[] points = {new Point(35,0),
+                new Point(31,12),
+                new Point(60,40),
+                new Point(50,50),
+                new Point(30,50),
+                new Point(24,35),
+                new Point(47,18),
+                new Point(60,17),
+                new Point(80,25),
+                new Point(110,49),
+                new Point(130,54),
+                new Point(140,53),
+                new Point(160,40),
+                new Point(155,30),
+                new Point(130,23),
+                new Point(110,23),
+                new Point(95,33),
+                new Point(80,50),
+                new Point(80,60),
+                new Point(110,65),
+                new Point(120,77)
+        };
         Path path = new Path(points);
         path.addObserver(map);
         map.addPath(path);
@@ -103,8 +126,22 @@ public class MenuController {
     @FXML
     public void selectMap2(){
         System.out.println("map2");
-        map = new Map(50,50);
-        Point[] points = {new Point(0,5), new Point(45,5), new Point(45,45), new Point(0,45)};
+        mapid = 2;
+        map = new Map(160,90);
+        Point[] points = {new Point(0,17),
+                new Point(24,17),
+                new Point(24,36),
+                new Point(71,36),
+                new Point(71,62),
+                new Point(42,62),
+                new Point(42,22),
+                new Point(84,22),
+                new Point(84,10),
+                new Point(145,10),
+                new Point(145,44),
+                new Point(107,44),
+                new Point(107,77)
+        };
         Path path = new Path(points);
         path.addObserver(map);
         map.addPath(path);
@@ -114,11 +151,30 @@ public class MenuController {
     @FXML
     public void selectMap3(){
         System.out.println("map3");
-        map = new Map(50,50);
-        Point[] points = {new Point(0,0), new Point(20,0), new Point(20,20), new Point(0,20)};
-        Path path = new Path(points);
-        path.addObserver(map);
-        map.addPath(path);
+        mapid = 3;
+        map = new Map(160,90);
+        Point[] points1 = {new Point(80, 0),
+                new Point(80, 12),
+                new Point(40, 20),
+                new Point(66, 30),
+                new Point(37, 50),
+                new Point(70, 57),
+                new Point(55, 77)
+        };
+        Path path1 = new Path(points1);
+        path1.addObserver(map);
+        map.addPath(path1);
+        Point[] points2 = {new Point(80, 0),
+                new Point(80, 12),
+                new Point(132, 20),
+                new Point(108, 34),
+                new Point(145, 42),
+                new Point(110, 60),
+                new Point(144, 76)
+        };
+        Path path2 = new Path(points2);
+        path2.addObserver(map);
+        map.addPath(path2);
         showStart();
     }
 
@@ -145,7 +201,12 @@ public class MenuController {
 
     @FXML
     public void start(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/game.fxml"));
+        FXMLLoader loader = switch(mapid){
+            case 1 -> new FXMLLoader(getClass().getResource("/game1.fxml"));
+            case 2 -> new FXMLLoader(getClass().getResource("/game2.fxml"));
+            case 3 -> new FXMLLoader(getClass().getResource("/game3.fxml"));
+            default -> null;
+        };
         root = loader.load();
         scene = new Scene(root);
         if (darkMode.isSelected()) {

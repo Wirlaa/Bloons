@@ -8,11 +8,11 @@ public enum BalloonType {
     BLUE,
     GREEN;
 
-    public int getStartingSpeed() {
+    public double getStartingSpeed() {
         return switch (this) {
-            case RED -> 1;
-            case BLUE -> 2;
-            case GREEN -> 3;
+            case RED -> 1.0;
+            case BLUE -> 2.0;
+            case GREEN -> 3.0;
         };
     }
 

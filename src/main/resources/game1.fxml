@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agh.gui.GameController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agh.gui.GameController">
    <children>
       <HBox prefHeight="0.0" prefWidth="600.0">
          <children>
             <Button fx:id="nextRound" alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#nextRound" text="Next Round" HBox.hgrow="ALWAYS" />
-            <Button fx:id="buttonShop" alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#switchShop" text="Shop" HBox.hgrow="ALWAYS" />
-            <Button fx:id="buttonOptions" alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#switchMode" text="Switch Mode" HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" text="Shop" HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" text="Options" HBox.hgrow="ALWAYS" />
             <Button alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" text="Menu" HBox.hgrow="ALWAYS" />
             <Button fx:id="buttonExit" alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#saveAndExit" text="Exit" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <AnchorPane fx:id="pane" prefHeight="326.0" prefWidth="600.0">
+      <AnchorPane fx:id="pane" prefHeight="458.0" prefWidth="854.0" style="-fx-background-image: url('/map1.png'); -fx-background-size: 100% 100%;"/>
          <children>
             <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="245.0" opacity="0.5" prefHeight="110.0" prefWidth="600.0" visible="false">
                <children>
