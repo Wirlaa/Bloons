@@ -148,13 +148,17 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/game.fxml"));
         root = loader.load();
         scene = new Scene(root);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/game.css")).toExternalForm());
+        if (darkMode.isSelected()) {
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/gameDark.css")).toExternalForm());
+        } else {
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/gameLight.css")).toExternalForm());
+        }
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
 
         GameController gameController = loader.getController();
         String name = textField.getText();
         if (name.isEmpty()) name = "Player";
-        gameController.initGame(map, new Player(name, 100));
+        gameController.initGame(map, new Player(name, 100), darkMode.isSelected());
     }
 
 

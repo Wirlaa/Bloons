@@ -33,8 +33,8 @@ public class Path implements IPath {
     }
 
     @Override
-    public boolean isMovingRight(Point position, int index) {
-        return pathPoints[index].follows(position);
+    public boolean isMovingRightUp(Point position, int index) {
+        return position.x() < pathPoints[index].x() || (position.x() == pathPoints[index].x() && position.y() < pathPoints[index].y());
     }
 
     //ten sposob bedzie dzialac tylko na liniach, nie mam pojecia jak to zrobic na krzywych parametrycznych

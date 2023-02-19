@@ -1,0 +1,26 @@
+.root{
+    -fx-background-color: beige;
+}
+
+.button:pressed{
+    -fx-background-color: bisque;
+}
+
+HBox{
+    -fx-background-color: peachpuff;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.button{
+    -fx-font-family: Georgia;
+    -fx-font-size: 15;
+    -fx-text-fill: maroon;
+
+}
+
+.label{
+    -fx-text-fill: maroon;
+    -fx-font-family: Georgia;
+    -fx-font-size: 20;
+}
