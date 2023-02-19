@@ -225,7 +225,7 @@ public class MenuController {
         String name = textField.getText();
         if (name.isEmpty()) name = "Player";
 
-        gameController.initGame(map, new Player(name, 100), darkMode.isSelected(), image);
+        gameController.initGame(map, new Player(name, 40), darkMode.isSelected(), image);
     }
 
 

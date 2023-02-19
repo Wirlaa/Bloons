@@ -117,4 +117,11 @@ public class GameController implements IChangeObserver {
         });
     }
 
+    @Override
+    public void lifeLost() {
+        Platform.runLater(() -> {
+            lifeCountLabel.setText(Integer.toString(Integer.parseInt(lifeCountLabel.getText()) - 1));
+        });
+    }
+
 }

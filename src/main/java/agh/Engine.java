@@ -96,7 +96,10 @@ public class Engine implements IEngine {
     }
 
     @Override
-    public void exitReached(Balloon balloon) {player.decrementLife();}
+    public void exitReached(Balloon balloon) {
+        player.decrementLife();
+        notifyLifeLost();
+    }
 
     @Override
     public void balloonPopped(Balloon balloon) {player.addMoney(balloon.getDropCount());}
@@ -113,5 +116,10 @@ public class Engine implements IEngine {
     }
     public void removeObserver(IChangeObserver observer) {
         observers.remove(observer);
+    }
+    public void notifyLifeLost(){
+        for(IChangeObserver observer:observers){
+            observer.lifeLost();
+        }
     }
 }
