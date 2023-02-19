@@ -17,12 +17,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Bloons");
-        Image icon = new Image("/icon.png");
-        stage.getIcons().add(icon);
         stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/menu.fxml")));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/menuDark.css")).toExternalForm());
+        stage.getIcons().add(new Image("/32x32icon.png"));
         stage.setScene(scene);
         stage.show();
 
