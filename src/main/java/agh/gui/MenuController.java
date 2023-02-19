@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -201,14 +202,17 @@ public class MenuController {
 
     @FXML
     public void start(ActionEvent event) throws IOException {
-        FXMLLoader loader = switch(mapid){
-            case 1 -> new FXMLLoader(getClass().getResource("/game1.fxml"));
-            case 2 -> new FXMLLoader(getClass().getResource("/game2.fxml"));
-            case 3 -> new FXMLLoader(getClass().getResource("/game3.fxml"));
+        Image image = switch(mapid){
+            case 1 -> new Image("/map1.png");
+            case 2 -> new Image("/map2.png");
+            case 3 -> new Image("/map3.png");
             default -> null;
         };
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/game.fxml"));
         root = loader.load();
         scene = new Scene(root);
+        GameController gameController = loader.getController();
+
         if (darkMode.isSelected()) {
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/gameDark.css")).toExternalForm());
         } else {
@@ -216,10 +220,10 @@ public class MenuController {
         }
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
 
-        GameController gameController = loader.getController();
         String name = textField.getText();
         if (name.isEmpty()) name = "Player";
-        gameController.initGame(map, new Player(name, 100), darkMode.isSelected());
+
+        gameController.initGame(map, new Player(name, 100), darkMode.isSelected(), image);
     }
 
 

@@ -8,14 +8,16 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.util.Objects;
+
+import static javafx.scene.layout.BackgroundSize.AUTO;
 
 public class GameController implements IChangeObserver {
     @FXML
@@ -32,7 +34,7 @@ public class GameController implements IChangeObserver {
     private boolean mode;
 
     //daloby sie uzyc initializable zamiast tego?
-    public void initGame(Map map, Player player, boolean mode){
+    public void initGame(Map map, Player player, boolean mode, Image image){
         playerNameLabel.setText(player.getName());
         lifeCountLabel.setText(Integer.toString(player.getLifeCount()));
         System.out.println(player.getName());
@@ -42,6 +44,13 @@ public class GameController implements IChangeObserver {
         Thread engineThread = new Thread(engine);
         engineThread.start();
         this.mode = mode;
+        BackgroundImage bImg = new BackgroundImage(image,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(AUTO,AUTO,false,false,true,false));
+        Background bGround = new Background(bImg);
+        pane.setBackground(bGround);
     }
 
     @FXML

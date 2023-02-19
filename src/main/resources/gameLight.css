@@ -2,10 +2,6 @@
     -fx-background-color: beige;
 }
 
-.button:pressed{
-    -fx-background-color: bisque;
-}
-
 HBox{
     -fx-background-color: peachpuff;
     -fx-padding: 10;
