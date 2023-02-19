@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class Shop {
     private final ArrayList<TowerType> unlockedTowerTypes = new ArrayList<>();
 
-    public void unlockTower(TowerType towerType, int money) {
+    public boolean unlockTower(TowerType towerType, int money) {
         if (towerType.getUnlockPrice() <= money){
             unlockedTowerTypes.add(towerType);
-        } //todo warning jak za malo money
+            return true;
+        }
+        return false;
     }
 
     public boolean canBuyTower(TowerType towerType, int money) {

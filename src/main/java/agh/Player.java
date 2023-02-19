@@ -32,7 +32,7 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public void unlockTower(TowerType towerType) {shop.unlockTower(towerType, money);}
+    public boolean unlockTower(TowerType towerType) {return shop.unlockTower(towerType, money);}
 
     @Override
     public boolean canBuyTower(TowerType towerType) {return shop.canBuyTower(towerType, money);}

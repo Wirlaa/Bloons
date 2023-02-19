@@ -105,13 +105,15 @@ public class Engine implements IEngine {
     @Override
     public void balloonPopped(Balloon balloon) {player.addMoney(balloon.getDropCount());}
     public void moveTower(Tower tower, Point position) {tower.changePosition(position);}
-    public void buyTower(Tower tower) {
+    public boolean buyTower(Tower tower) {
         if (player.canBuyTower(tower.getType())){
             player.buyTower(tower.getType());
-        } //todo warning
+            return true;
+        }
+        return false;
     }
     public void sellTower(Tower tower) {player.sellTower(tower.getType());}
-    public void unlockTower(Tower tower) {player.unlockTower(tower.getType());}
+    public boolean unlockTower(TowerType towerType) {return player.unlockTower(towerType);}
     public void addObserver(IChangeObserver observer) {
         observers.add(observer);
     }

@@ -10,7 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -28,6 +32,12 @@ public class GameController implements IChangeObserver {
     private Label playerNameLabel;
     @FXML
     private Label lifeCountLabel;
+    @FXML
+    private ImageView towerShop1;
+    @FXML
+    private ImageView towerShop2;
+    @FXML
+    private ImageView towerShop3;
     @FXML
     private HBox shop;
     private Map map;
@@ -52,6 +62,10 @@ public class GameController implements IChangeObserver {
                 new BackgroundSize(AUTO,AUTO,false,false,true,true));
         Background bGround = new Background(bImg);
         pane.setBackground(bGround);
+        towerShop1.setOpacity(0.5);
+        towerShop2.setOpacity(0.5);
+        towerShop3.setOpacity(0.5);
+
     }
 
     @FXML
@@ -79,42 +93,77 @@ public class GameController implements IChangeObserver {
     }
 
     @FXML
-    public void unlockTower1(MouseEvent event) {
+    public void unlockTower1() {
         System.out.println("unlock tower 2");
-        ((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
-        //engine.buyTower();
+        if(engine.unlockTower(TowerType.BASIC)){
+            towerShop1.setOpacity(1);
+        }
     }
     @FXML
     public void unlockTower2(){
         System.out.println("unlock tower 2");
-        //engine.buyTower();
+        engine.unlockTower(TowerType.MEDIUM);
     }
 
     @FXML
     public void unlockTower3(){
         System.out.println("unlock tower 3");
-        //engine.buyTower();
+        engine.unlockTower(TowerType.ADVANCED);
     }
 
     @FXML
-    public void buyTower1(){
+    public void buyTower1(MouseEvent event){
+        ((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
+        Dragboard db = ((Node) event.getSource()).getScene().startDragAndDrop(TransferMode.ANY);
 
-        System.out.println("buy tower 1");
+        event.consume();
         //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //engine.buyTower();
     }
     @FXML
-    public void buyTower2(){
-        System.out.println("buy tower 2");
+    public void buyTower2(MouseEvent event){
+        ((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //engine.buyTower();
     }
 
     @FXML
-    public void buyTower3(){
-        System.out.println("buy tower 3");
+    public void buyTower3(MouseEvent event){
+        ((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //engine.buyTower();
+    }
+
+    @FXML
+    public void placeTower1(DragEvent event){
+        System.out.println("zerGDSFBzrstexhasehrtgbz");
+        Tower tower = new Tower(TowerType.BASIC, new Point(event.getX(), event.getY()));
+        if(engine.buyTower(tower)){
+            map.placeTower(tower);
+        }
+        ((Node) event.getSource()).getScene().setCursor(Cursor.DEFAULT);
+
+        event.setDropCompleted(true);
+
+        event.consume();
+    }
+
+    @FXML
+    public void placeTower2(MouseEvent event){
+        Tower tower = new Tower(TowerType.MEDIUM, new Point(event.getX(), event.getY()));
+        if(engine.buyTower(tower)){
+            map.placeTower(tower);
+        }
+        ((Node) event.getSource()).getScene().setCursor(Cursor.DEFAULT);
+    }
+
+    @FXML
+    public void placeTower3(MouseEvent event){
+        Tower tower = new Tower(TowerType.ADVANCED, new Point(event.getX(), event.getY()));
+        if(engine.buyTower(tower)){
+            map.placeTower(tower);
+        }
+        ((Node) event.getSource()).getScene().setCursor(Cursor.DEFAULT);
     }
 
     @FXML
