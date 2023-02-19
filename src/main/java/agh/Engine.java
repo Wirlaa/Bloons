@@ -43,7 +43,7 @@ public class Engine implements IEngine {
             }
             map.moveBalloons();
             mapChanged();
-            System.out.println("balloons moved");
+            //System.out.println("balloons moved");
             try {
                 Thread.sleep(30);
             } catch (InterruptedException e) {
@@ -74,6 +74,7 @@ public class Engine implements IEngine {
                 throw new RuntimeException(e);
             }
         }
+
         //todo koniec gry
 
     }

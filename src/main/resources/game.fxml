@@ -20,21 +20,21 @@
                 <Button alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#saveAndExit" text="Exit" HBox.hgrow="ALWAYS" />
             </children>
         </HBox>
-        <AnchorPane fx:id="pane" prefHeight="458.0" prefWidth="680.0">
+        <AnchorPane fx:id="pane" maxHeight="379.0" maxWidth="680.0">
             <children>
-                <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="245.0" opacity="0.5" prefHeight="110.0" prefWidth="600.0" visible="false">
+                <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="295.0" opacity="0.5" prefHeight="87.0" prefWidth="680.0" visible="false">
                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#buyTower1" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower1" onMouseDragged="#buyTower1" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map1.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#buyTower2" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower2" onMouseDragged="#buyTower2" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map2.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#buyTower3" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower3" onMouseDragged="#buyTower3" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map3.png" />
                             </image>
@@ -42,7 +42,7 @@
                     </children>
                 </HBox>
             </children></AnchorPane>
-        <HBox alignment="CENTER_RIGHT" prefHeight="89.0" prefWidth="600.0">
+        <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="50.0" prefHeight="50.0" prefWidth="680.0">
             <children>
                 <Label fx:id="playerNameLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Label" />
             <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">

@@ -5,10 +5,12 @@ import agh.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -30,25 +32,24 @@ public class GameController implements IChangeObserver {
     private HBox shop;
     private Map map;
     private Engine engine;
-
     private boolean mode;
 
     //daloby sie uzyc initializable zamiast tego?
     public void initGame(Map map, Player player, boolean mode, Image image){
-        playerNameLabel.setText(player.getName());
         lifeCountLabel.setText(Integer.toString(player.getLifeCount()));
-        System.out.println(player.getName());
+        playerNameLabel.setText(player.getName());
         this.map = map;
         engine = new Engine(player, map, 0);
         engine.addObserver(this);
         Thread engineThread = new Thread(engine);
         engineThread.start();
+        engine.pause();
         this.mode = mode;
         BackgroundImage bImg = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
-                new BackgroundSize(AUTO,AUTO,false,false,true,false));
+                new BackgroundSize(AUTO,AUTO,false,false,true,true));
         Background bGround = new Background(bImg);
         pane.setBackground(bGround);
     }
@@ -78,19 +79,41 @@ public class GameController implements IChangeObserver {
     }
 
     @FXML
-    public void buyTower1(ActionEvent event){
-
+    public void unlockTower1(MouseEvent event) {
+        System.out.println("unlock tower 2");
+        ((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //engine.buyTower();
     }
     @FXML
-    public void buyTower2(ActionEvent event){
-
+    public void unlockTower2(){
+        System.out.println("unlock tower 2");
         //engine.buyTower();
     }
 
     @FXML
-    public void buyTower3(ActionEvent event){
+    public void unlockTower3(){
+        System.out.println("unlock tower 3");
+        //engine.buyTower();
+    }
 
+    @FXML
+    public void buyTower1(){
+
+        System.out.println("buy tower 1");
+        //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
+        //engine.buyTower();
+    }
+    @FXML
+    public void buyTower2(){
+        System.out.println("buy tower 2");
+        //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
+        //engine.buyTower();
+    }
+
+    @FXML
+    public void buyTower3(){
+        System.out.println("buy tower 3");
+        //((Node) event.getSource()).getScene().setCursor(Cursor.CLOSED_HAND);
         //engine.buyTower();
     }
 
@@ -105,7 +128,7 @@ public class GameController implements IChangeObserver {
     @Override
     public void mapChanged() {
         Platform.runLater(() -> {
-            pane.getChildren().clear();
+            pane.getChildren().removeIf(o -> !Objects.equals(o.getId(), shop.getId()));
             for(Balloon balloon: map.getBalloons()){
                 Circle circle = new Circle(5, Color.RED);
                 circle.setCenterX(balloon.getPosition().x()*5);
@@ -113,7 +136,6 @@ public class GameController implements IChangeObserver {
 
                 pane.getChildren().add(circle);
             }
-            pane.getChildren().add(shop);
         });
     }
 
