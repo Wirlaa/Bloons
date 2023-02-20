@@ -3,7 +3,7 @@
 }
 
 HBox{
-    -fx-background-color: peachpuff;
+    -fx-background-color: rgba(FF,DA,B9,0.5);
     -fx-padding: 10;
     -fx-spacing: 10;
 }

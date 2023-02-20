@@ -19,13 +19,13 @@ public class Engine implements IEngine {
     }
 
     private void spawnBalloon(){
-        if (roundNumber < 5) {
+        if (roundNumber < 2) {
             map.placeBalloons(BalloonType.RED,1);
-        } else if (roundNumber < 10) {
+        } else if (roundNumber < 4) {
             map.placeBalloons(BalloonType.RED,2);
-        } else if (roundNumber < 20) {
+        } else if (roundNumber < 6) {
             map.placeBalloons(BalloonType.BLUE,1);
-        } else if (roundNumber < 30) {
+        } else if (roundNumber < 8) {
             map.placeBalloons(BalloonType.BLUE,2);
         } else {
             map.placeBalloons(BalloonType.GREEN,1);
@@ -105,6 +105,7 @@ public class Engine implements IEngine {
     @Override
     public void balloonPopped(Balloon balloon) {player.addMoney(balloon.getDropCount());}
     public void moveTower(Tower tower, Point position) {tower.changePosition(position);}
+    public boolean isUnlocked(TowerType type) {return player.isUnlocked(type);}
     public boolean buyTower(Tower tower) {
         if (player.canBuyTower(tower.getType())){
             player.buyTower(tower.getType());

@@ -19,4 +19,6 @@ public class Shop {
     public boolean canBuyTower(TowerType towerType, int money) {
         return unlockedTowerTypes.contains(towerType) && towerType.getBuyingPrice() <= money;
     }
+
+    public boolean isUnlocked(TowerType towerType) {return unlockedTowerTypes.contains(towerType);}
 }

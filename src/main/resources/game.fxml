@@ -20,21 +20,21 @@
                 <Button alignment="CENTER" maxWidth="Infinity" mnemonicParsing="false" onAction="#saveAndExit" text="Exit" HBox.hgrow="ALWAYS" />
             </children>
         </HBox>
-        <AnchorPane fx:id="pane" maxHeight="379.0" maxWidth="680.0" onDragDropped="#placeTower1" pickOnBounds="false">
+        <AnchorPane fx:id="pane" maxHeight="379.0" maxWidth="680.0" onMouseReleased="#placeTower" pickOnBounds="false">
             <children>
                 <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="295.0" prefHeight="87.0" prefWidth="680.0" visible="false">
                     <children>
-                        <ImageView fx:id="towerShop1" fitHeight="100.0" fitWidth="100.0" onDragDetected="#buyTower1" onMouseClicked="#unlockTower1" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower1" onMouseDragged="#buyTower1" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map1.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="towerShop2" fitHeight="100.0" fitWidth="100.0" onDragDetected="#buyTower2" onMouseClicked="#unlockTower2" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower2" onMouseDragged="#buyTower2" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map2.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="towerShop3" fitHeight="100.0" fitWidth="100.0" onDragDetected="#buyTower3" onMouseClicked="#unlockTower3" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower3" onMouseDragged="#buyTower3" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@map3.png" />
                             </image>
@@ -59,28 +59,5 @@
             <Insets />
          </VBox.margin>
         </HBox>
-      <AnchorPane fx:id="pane1" layoutX="10.0" layoutY="35.0" maxHeight="379.0" maxWidth="680.0">
-         <children>
-            <HBox fx:id="shop1" alignment="CENTER" disable="true" layoutY="295.0" prefHeight="87.0" prefWidth="680.0" visible="false">
-               <children>
-                  <ImageView fx:id="towerShop11" fitHeight="100.0" fitWidth="100.0" onDragDropped="#placeTower1" onMouseClicked="#unlockTower1" onMouseDragged="#buyTower1" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@map1.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="towerShop21" fitHeight="100.0" fitWidth="100.0" onDragDone="#placeTower2" onMouseClicked="#unlockTower2" onMouseDragged="#buyTower2" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@map2.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="towerShop31" fitHeight="100.0" fitWidth="100.0" onDragDone="#placeTower3" onMouseClicked="#unlockTower3" onMouseDragged="#buyTower3" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@map3.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
     </children>
 </VBox>

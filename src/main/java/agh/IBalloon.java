@@ -7,5 +7,6 @@ public interface IBalloon {
     void move();
     int getDropCount();
     int getSpawnCount();
+    BalloonType getColor();
     boolean isLastColor();
 }

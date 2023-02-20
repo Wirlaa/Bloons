@@ -8,6 +8,7 @@ public interface IPlayer {
     int getMoney();
     String getName();
     void decrementLife();
+    boolean isUnlocked(TowerType towerType);
     boolean unlockTower(TowerType towerType);
     boolean canBuyTower(TowerType towerType);
     void buyTower(TowerType towerType);
