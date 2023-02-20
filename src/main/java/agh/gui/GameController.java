@@ -29,7 +29,11 @@ public class GameController implements IChangeObserver {
     @FXML
     private Label playerNameLabel;
     @FXML
+    private Label roundNumberUI;
+    @FXML
     private Label lifeCountLabel;
+    @FXML
+    private Label moneyNumberUI;
     @FXML
     private ImageView towerShop1;
     @FXML
@@ -47,6 +51,7 @@ public class GameController implements IChangeObserver {
     public void initGame(Map map, Player player, boolean mode, Image image){
         lifeCountLabel.setText(Integer.toString(player.getLifeCount()));
         playerNameLabel.setText(player.getName());
+        moneyNumberUI.setText(Integer.toString(player.getMoney()));
         this.map = map;
         engine = new Engine(player, map, 0);
         engine.addObserver(this);
@@ -196,6 +201,20 @@ public class GameController implements IChangeObserver {
     public void lifeLost() {
         Platform.runLater(() -> {
             lifeCountLabel.setText(Integer.toString(Integer.parseInt(lifeCountLabel.getText()) - 1));
+        });
+    }
+
+    @Override
+    public void newRound() {
+        Platform.runLater(() -> {
+            roundNumberUI.setText(Integer.toString(Integer.parseInt(roundNumberUI.getText()) + 1));
+        });
+    }
+
+    @Override
+    public void moneyChanged(int money) {
+        Platform.runLater(() -> {
+            moneyNumberUI.setText(Integer.toString(money));
         });
     }
 

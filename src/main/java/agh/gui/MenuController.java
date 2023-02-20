@@ -118,7 +118,7 @@ public class MenuController {
                 new Point(80*coeffx,50*coeffy),
                 new Point(80*coeffx,60*coeffy),
                 new Point(110*coeffx,65*coeffy),
-                new Point(120*coeffx,76*coeffy)
+                new Point(120*coeffx,75*coeffy)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -143,7 +143,7 @@ public class MenuController {
                 new Point(145*coeffx,10*coeffy),
                 new Point(145*coeffx,44*coeffy),
                 new Point(107*coeffx,44*coeffy),
-                new Point(107*coeffx,76*coeffy)
+                new Point(107*coeffx,75*coeffy)
         };
         Path path = new Path(points);
         path.addObserver(map);
@@ -162,7 +162,7 @@ public class MenuController {
                 new Point(66*coeffx, 30*coeffy),
                 new Point(37*coeffx, 50*coeffy),
                 new Point(70*coeffx, 57*coeffy),
-                new Point(55*coeffx, 76*coeffy)
+                new Point(55*coeffx, 75*coeffy)
         };
         Path path1 = new Path(points1);
         path1.addObserver(map);
@@ -173,7 +173,7 @@ public class MenuController {
                 new Point(108*coeffx, 34*coeffy),
                 new Point(145*coeffx, 42*coeffy),
                 new Point(110*coeffx, 60*coeffy),
-                new Point(144*coeffx, 76*coeffy)
+                new Point(144*coeffx, 75*coeffy)
         };
         Path path2 = new Path(points2);
         path2.addObserver(map);

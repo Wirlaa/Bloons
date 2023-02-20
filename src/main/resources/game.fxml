@@ -22,38 +22,63 @@
         </HBox>
         <AnchorPane fx:id="pane" maxHeight="379.0" maxWidth="680.0" onMouseReleased="#placeTower" pickOnBounds="false">
             <children>
-                <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="295.0" prefHeight="87.0" prefWidth="680.0" visible="false">
+                <HBox fx:id="shop" alignment="CENTER" disable="true" layoutY="270.0" prefHeight="100.0" prefWidth="680.0" visible="false">
                     <children>
-                        <ImageView fx:id="towerShop1" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower1" onMouseDragged="#buyTower1" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop1" fitHeight="70.0" fitWidth="100.0" onMouseClicked="#unlockTower1" onMouseDragged="#buyTower1" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@map1.png" />
+                                <Image url="@basicTower.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="towerShop2" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower2" onMouseDragged="#buyTower2" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop2" fitHeight="70.0" fitWidth="100.0" onMouseClicked="#unlockTower2" onMouseDragged="#buyTower2" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@map2.png" />
+                                <Image url="@mediumTower.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="towerShop3" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#unlockTower3" onMouseDragged="#buyTower3" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerShop3" fitHeight="70.0" fitWidth="100.0" onMouseClicked="#unlockTower3" onMouseDragged="#buyTower3" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@map3.png" />
+                                <Image url="@advancedTower.png" />
                             </image>
                         </ImageView>
                     </children>
                 </HBox>
             </children></AnchorPane>
-        <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="50.0" prefHeight="50.0" prefWidth="680.0">
+        <HBox alignment="CENTER" fillHeight="false" minHeight="50.0" prefHeight="50.0" prefWidth="680.0">
             <children>
-                <Label fx:id="playerNameLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Label" />
-            <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@heart.png" />
-               </image>
-            </ImageView>
-                <Label fx:id="lifeCountLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Label">
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin></Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+               <children>
+                  <Label text="Money: " />
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@money.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="moneyNumberUI" text="Label" />
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="219.0">
+               <children>
+                  <Label text="Round: " />
+                  <Label fx:id="roundNumberUI" text="0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="226.0">
+               <children>
+                      <Label fx:id="playerNameLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Label" />
+                  <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@heart.png" />
+                     </image>
+                  </ImageView>
+                      <Label fx:id="lifeCountLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Label">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             </children>
          <VBox.margin>
             <Insets />

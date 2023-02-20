@@ -34,6 +34,7 @@ public class Engine implements IEngine {
 
     private void runRound() {
         roundNumber++;
+        notifyNewRound();
         spawnBalloon();
         int counter = 0;
         while(map.getBalloons().length > 0) {
@@ -45,7 +46,7 @@ public class Engine implements IEngine {
             mapChanged();
             //System.out.println("balloons moved");
             try {
-                Thread.sleep(30);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -103,18 +104,29 @@ public class Engine implements IEngine {
     }
 
     @Override
-    public void balloonPopped(Balloon balloon) {player.addMoney(balloon.getDropCount());}
+    public void balloonPopped(Balloon balloon) {
+        player.addMoney(balloon.getDropCount());
+        notifyMoneyChanged();
+    }
     public void moveTower(Tower tower, Point position) {tower.changePosition(position);}
     public boolean isUnlocked(TowerType type) {return player.isUnlocked(type);}
     public boolean buyTower(Tower tower) {
         if (player.canBuyTower(tower.getType())){
             player.buyTower(tower.getType());
+            notifyMoneyChanged();
             return true;
         }
         return false;
     }
     public void sellTower(Tower tower) {player.sellTower(tower.getType());}
-    public boolean unlockTower(TowerType towerType) {return player.unlockTower(towerType);}
+    public boolean unlockTower(TowerType towerType) {
+        if (player.unlockTower(towerType)){
+            notifyMoneyChanged();
+            return true;
+        }
+        System.out.println(player.getMoney());
+        return false;
+    }
     public void addObserver(IChangeObserver observer) {
         observers.add(observer);
     }
@@ -126,4 +138,15 @@ public class Engine implements IEngine {
             observer.lifeLost();
         }
     }
+    public void notifyNewRound(){
+        for(IChangeObserver observer:observers){
+            observer.newRound();
+        }
+    }
+    public void notifyMoneyChanged(){
+        for(IChangeObserver observer:observers){
+            observer.moneyChanged(player.getMoney());
+        }
+    }
+
 }

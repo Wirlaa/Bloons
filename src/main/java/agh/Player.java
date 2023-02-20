@@ -35,7 +35,13 @@ public class Player implements IPlayer {
     public boolean isUnlocked(TowerType towerType) {return shop.isUnlocked(towerType);}
 
     @Override
-    public boolean unlockTower(TowerType towerType) {return shop.unlockTower(towerType, money);}
+    public boolean unlockTower(TowerType towerType) {
+        if(shop.unlockTower(towerType, money)){
+            money = money - towerType.getUnlockPrice();
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean canBuyTower(TowerType towerType) {return shop.canBuyTower(towerType, money);}

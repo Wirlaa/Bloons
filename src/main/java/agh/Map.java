@@ -36,7 +36,7 @@ public class Map implements IMap {
     @Override
     public void moveBalloons() {
         ArrayList<Tower> activeTowers = new ArrayList<>(towers.values());
-        Balloon[] activeBalloons = getBalloons();
+        List<Balloon> activeBalloons = new ArrayList<>(Arrays.stream(getBalloons()).toList());
         for(Balloon balloon : activeBalloons) {
             //System.out.println(balloon);
             //System.out.println(balloon.getPosition().x());
@@ -45,11 +45,14 @@ public class Map implements IMap {
             Tower towerToRemove = null;
             for (Tower tower : activeTowers) {
                 if (checkCollisions(balloon, tower)) {
-                    balloons.remove(balloon.position, balloon);
+                    boolean wasLastColor = balloon.isLastColor();
+                    //activeBalloons.remove(balloon);
                     balloonPopped(balloon);
                     spawnNextBalloons(balloon);
                     towerToRemove = tower;
-                    break;
+                    //break;
+                    if(wasLastColor)
+                        break;
                 }
             }
             activeTowers.remove(towerToRemove);
@@ -57,9 +60,12 @@ public class Map implements IMap {
     }
 
     private void spawnNextBalloons(Balloon balloon) {
+        Balloon balloon1;
         if (!balloon.isLastColor()) {
             for (int i = balloon.getSpawnCount(); i > 0; i--) {
-                placeBalloon(new Balloon(balloon));
+                balloon1 = new Balloon(balloon);
+
+                placeBalloon(balloon1);
             }
         }
     }
@@ -76,14 +82,14 @@ public class Map implements IMap {
         if (inBounds(balloon.getPosition())) {
             balloons.put(balloon.getPosition(), balloon);
             balloon.addObserver(this);
-        } //todo error
+        }
     }
 
     @Override
     public void placeBalloons(BalloonType type, int number) {
         int pathsCount = paths.size();
         for (int i = number; i > 0; i--) {
-            placeBalloon(new Balloon(type, paths.get(ThreadLocalRandom.current().nextInt(0, pathsCount))));
+            placeBalloon(new Balloon(type, paths.get(ThreadLocalRandom.current().nextInt(0, pathsCount)), 1));
         }
     }
 
@@ -135,7 +141,9 @@ public class Map implements IMap {
     }
 
     public void balloonPopped(Balloon balloon) {
-        balloons.remove(balloon.position, balloon);
+        if(balloon.isLastColor()) {
+            balloons.remove(balloon.position, balloon);
+        }
         for (IMapObserver observer : observers) {
             observer.balloonPopped(balloon);
         }

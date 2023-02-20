@@ -11,14 +11,14 @@ public class Balloon extends AMapElement implements IBalloon {
     public Balloon(Balloon balloon) {
         // nie ma checku jakby balon byl czerwony, bo wtedy kolor bedzie nullem
         // czy powinien check byc w inicie?
-        this(balloon.color.getNextColor(), balloon.path);
+        this(balloon.color.getNextColor(), balloon.path, balloon.pathIndex);
         this.position = balloon.position;
     }
 
-    public Balloon(BalloonType color, IPath path) {
+    public Balloon(BalloonType color, IPath path, int pathIndex) {
         this.color = color;
         this.path = path;
-        this.pathIndex = 1;
+        this.pathIndex = pathIndex;
         this.position = path.getEntry();
         this.dropCount = color.getMoneyDrop();
         this.spawnCount = color.getSpawnCount();
@@ -58,5 +58,4 @@ public class Balloon extends AMapElement implements IBalloon {
             observer.positionChangedBalloon(oldPosition, newPosition, this);
         }
     }
-
 }
